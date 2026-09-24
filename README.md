@@ -17,7 +17,7 @@ Three custom Claude skills that work together inside a Project:
 | Skill | What it does |
 |---|---|
 | `/session-open` | Reports how long since you last worked on a topic, loads your saved notes, and logs that you're back |
-| `/session-close` | Summarizes what got done and what's next, then saves it to a per-topic context file |
+| `/session-close` | Logs what got done and what's next, and updates that topic's context file |
 | `/load-context` | Pulls any topic's saved notes into a different chat without copy-pasting anything |
 
 A scheduled agent can also run at 6am daily to flag sessions left open overnight (setup instructions below).
@@ -87,7 +87,7 @@ Claude also supports Skills in Claude Code, but these three skills specifically 
 
 ## File structure
 
-Each skill writes to your Project's memory subtree:
+All three skills work within your Project's memory subtree:
 
 ```text
 <project-memory>/
