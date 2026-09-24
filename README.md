@@ -58,28 +58,32 @@ This lets each workstream maintain its own lightweight history without relying o
 
 These skills are **project-scoped**. Each person's session history and context files live inside their own Claude Project. Nothing is shared across accounts or Projects. The skills won't run outside a Project.
 
+## Requirements
+
+These skills are designed for use inside a Claude Project because they rely on project-scoped memory to maintain the session log and per-topic context files.
+
+They also rely on access to the current time so session timestamps and elapsed-time calculations are based on the actual time rather than being inferred from the conversation.
+
+Claude Skills require code execution to be enabled.
+
 ## Installation
 
-These are **Claude custom skills**. They require a Claude account with Projects and custom skills enabled (Pro or Team plan).
+### Claude
 
-### Option 1: Install via Claude's skill interface
+1. Zip each skill **folder** (e.g. `session-open.zip` containing `session-open/SKILL.md`). The folder name must match the skill's `name`.
+2. In Claude, go to **Customize → Skills**.
+3. Click the **+** button, then **Create skill**.
+4. Select **Upload a skill**.
+5. Upload the ZIP file for the skill you want to install.
+6. Make sure the skill is enabled in your Skills list.
 
-1. In Claude, open a Project
-2. Go to **Project settings → Skills → Add skill**
-3. Paste the contents of each `SKILL.md` file
+Repeat for `/session-open`, `/session-close`, and `/load-context`.
 
-### Option 2: Install via Claude Code
+These skills are designed to run from conversations inside a Claude Project. They will stop rather than fall back to account-level memory when used outside a Project.
 
-If you have Claude Code configured:
+### Claude Code
 
-```bash
-# Copy each skill into your Claude skills directory
-cp -r session-open/ ~/.claude/skills/
-cp -r session-close/ ~/.claude/skills/
-cp -r load-context/ ~/.claude/skills/
-```
-
-Then restart Claude Code to pick up the new skills.
+Claude also supports Skills in Claude Code, but these three skills specifically depend on the project-scoped memory and time capabilities described above. Simply copying the skill folders into a standard Claude Code setup is not sufficient unless your environment provides those dependencies.
 
 ## File structure
 
@@ -230,7 +234,7 @@ This isn't required for the three skills to work. It's a cleanup mechanism for s
 
 Claude's project instructions can nudge the model, but the skills must be invoked explicitly.
 
-The workflow doesn't depend on Claude reliably deciding when a session has started or ended. The skills are designed to be resilient to missed invocations, and the optional scheduled check provides a recovery mechanism when a close is missed.
+The workflow doesn't depend on Claude reliably deciding when a session has started or ended. The skills are designed to be resilient to missed invocations, and the optional scheduled check flags sessions that were left open so you can close them manually.
 
 ### Topic-tagged, never recency-only
 
@@ -264,7 +268,7 @@ Persistent context should be selective.
 
 `/session-close` will never save:
 
-- private financial figures
+- salary, compensation, or other private financial figures
 - credentials
 - government ID numbers
 - account numbers
@@ -279,6 +283,10 @@ If you modify these skills for your own workflow, review the persistence rules i
 I'm actively using and experimenting with these skills and expect the collection to evolve as I find other session and context-management problems worth solving.
 
 If you modify them or find an edge case, feel free to open an issue or submit a pull request.
+
+## Disclaimer
+
+This is an independent project and is not affiliated with or endorsed by Anthropic.
 
 ## License
 

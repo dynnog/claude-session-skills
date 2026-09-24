@@ -1,6 +1,6 @@
 ---
 name: "session-open"
-description: "Run when returning to work on a specific topic to see how long since you last worked on it, pick up where you left off, and load that topic's saved details. Project-only. Matches the topic you name; if none given, lists recent topics to pick from. Never guesses."
+description: "Run when returning to a topic to see how long since you last worked on it and load its saved context. Project-only. Lists recent topics if none is named; never guesses."
 ---
 
 # Session Open

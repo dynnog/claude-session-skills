@@ -1,6 +1,6 @@
 ---
 name: "session-close"
-description: "Run when wrapping up work to save a timestamped, topic-tagged status to the session log and update that topic's context file with the key details, so any chat in the same Project can pick it up later. Project-only."
+description: "Run when wrapping up to log a timestamped, topic-tagged status and update that topic's context file, so any chat in the same Project can pick it up later. Project-only."
 ---
 
 # Session Close
@@ -79,7 +79,7 @@ Does two jobs at the end of a working session:
    - Only add what was actually said or decided in this chat. Omit empty sections rather than filling them with guesses.
    - Update outdated lines in place (e.g. "waiting on stakeholder feedback" -> "feedback received Sep 24"). Keep the file tight - a quick-reference sheet, not a transcript. Aim for under ~3 KB.
    - If this session added nothing substantive beyond the status line, skip this step.
-   - Never save private financial figures, credentials, government ID or account numbers, or health details. Leave those parts out entirely, no placeholder.
+   - Never save salary, compensation, or other private financial figures, credentials, government ID or account numbers, or health details. Leave those parts out entirely, no placeholder.
 
 7. **Confirm.** Show what you logged, including the topic, and note whether the context file was updated:
    > Logged - client research, Tue Sep 22, 3:10 PM PT.
